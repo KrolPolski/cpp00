@@ -20,7 +20,6 @@ int	main(int argc, char **argv)
 			std::cout << (char)std::toupper(argv[i][k]);
 			k++;
 		}
-		
 		k = 0;
 		i++;
 	}
