@@ -1,25 +1,90 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/29 12:54:09 by rboudwin          #+#    #+#             */
+/*   Updated: 2024/07/29 13:49:11 by rboudwin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <cstring>
 #include <iostream>
+#include <limits>
 
 class Contacts
 {
-    std::string first_name;
-    std::string last_name;
-    std::string nickname;
-    std::string phone_number;
-    std::string darkest_secret;
+    public:
+        std::string first_name;
+        std::string last_name;
+        std::string nickname;
+        std::string phone_number;
+        std::string darkest_secret;
 };
 class PhoneBook 
 {
     Contacts contact[8];
-    public: void add()
+    public: void add(int index)
     {
-        std::cout << "Adding is fun" << std::endl;
+        std::cout << "Let's add a contact." << std::endl;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "First Name: ";
+        std::getline(std::cin, contact[index].first_name);
+        std::cout << "Last Name: ";
+        std::getline(std::cin, contact[index].last_name);
+        std::cout << "Nickname: ";
+        std::getline(std::cin, contact[index].nickname);
+        std::cout << "Phone Number: ";
+        std::getline(std::cin, contact[index].phone_number);
+        std::cout << "Darkest Secret: ";
+        std::getline(std::cin, contact[index].darkest_secret);
+    }
+    int pick_index()
+    {
+        int index;
+        index = 42;
+        std::string input;
+
+        while (index < 0 || index > 7)
+        {
+        std::cout << "Please select the contact you want by index: ";
+        std::cin >> input;
+        try
+        {
+            index = std::stoi(input);
+        }
+        catch(const std::invalid_argument&)
+        {
+            std::cerr << "That wasn't a valid index. Try again" << std::endl;
+            continue;
+        }
+        if (index < 0 || index > 7)
+            std::cerr << "That index is out of range. Try again" << std::endl;
+        }
+        return index;
     }
     public: void search()
     {
-        std::cout << "Searching is fun" << std::endl;
+        int index;
+        std::string input;
+
+        std::cout << "Index     | First Name | Last Name  | NickName  " << std::endl;
+        for (int i = 0; i < 8; i++)
+        {
+            
+            std::cout << i << " | " << contact[i].first_name << " | " << contact[i].last_name
+                << " | " << contact[i].nickname << std::endl;
+        }
+        index = pick_index();
+        std::cout << "First Name: " << contact[index].first_name << std::endl;
+        std::cout << "Last Name: " << contact[index].last_name << std::endl;
+        std::cout << "Nickname: " << contact[index].nickname << std::endl;
+        std::cout << "Phone Number: " << contact[index].phone_number << std::endl;
+        std::cout << "Darkest Secret: " << contact[index].darkest_secret << std::endl;
     }
+
 };
 
 
@@ -28,6 +93,9 @@ int main(void)
 {
     PhoneBook MyPhoneBook;
     std::string input;
+    int index;
+
+    index = 0;
 
     std::cout << "You have traveled back in time to 1995, and get to use a phone book." << std::endl;
     std::cout << "Your phone book is currently empty." << std::endl;
@@ -37,7 +105,13 @@ int main(void)
     while (input != "EXIT")
     {
         if (input == "ADD")
-            MyPhoneBook.add();
+        {
+            MyPhoneBook.add(index);
+            if (index == 7)
+                index = 0;
+            else
+                index++;
+        }
         else if (input == "SEARCH")
             MyPhoneBook.search();
         else
