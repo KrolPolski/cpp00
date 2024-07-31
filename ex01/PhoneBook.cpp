@@ -33,14 +33,44 @@ class PhoneBook
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "First Name: ";
         std::getline(std::cin, MyContacts[index].first_name);
+        while (MyContacts[index].first_name.length() == 0)
+        {
+            std::cout << "Empty inputs are not allowed. Try again" << std::endl;
+            std::cout << "First Name: ";
+            std::getline(std::cin, MyContacts[index].first_name);
+        }     
         std::cout << "Last Name: ";
         std::getline(std::cin, MyContacts[index].last_name);
+        while (MyContacts[index].last_name.length() == 0)
+        {
+            std::cout << "Empty inputs are not allowed. Try again" << std::endl;
+            std::cout << "Last Name: ";
+            std::getline(std::cin, MyContacts[index].last_name);
+        }
         std::cout << "Nickname: ";
         std::getline(std::cin, MyContacts[index].nickname);
+        while (MyContacts[index].nickname.length() == 0)
+        {
+             std::cout << "Empty inputs are not allowed. Try again" << std::endl;
+             std::cout << "Nickname: ";
+             std::getline(std::cin, MyContacts[index].nickname);
+        }
         std::cout << "Phone Number: ";
         std::getline(std::cin, MyContacts[index].phone_number);
+        while (MyContacts[index].phone_number.length() == 0)
+        {
+            std::cout << "Empty inputs are not allowed. Try again" << std::endl;
+            std::cout << "Phone Number: ";
+            std::getline(std::cin, MyContacts[index].phone_number);
+        }
         std::cout << "Darkest Secret: ";
         std::getline(std::cin, MyContacts[index].darkest_secret);
+        while (MyContacts[index].darkest_secret.length() == 0)
+        {
+            std::cout << "Empty inputs are not allowed. Try again" << std::endl;
+            std::cout << "Darkest Secret: ";
+            std::getline(std::cin, MyContacts[index].darkest_secret);
+        }
     }
     private: int pick_index()
     {
