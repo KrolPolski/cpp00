@@ -6,28 +6,13 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 12:54:09 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/07/31 09:45:44 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:40:05 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstring>
-#include <iostream>
-#include <limits>
-#include <iomanip>
+#include "main.hpp"
 
-class Contact
-{
-    public:
-        std::string first_name;
-        std::string last_name;
-        std::string nickname;
-        std::string phone_number;
-        std::string darkest_secret;
-};
-class PhoneBook 
-{
-    Contact MyContacts[8];
-    public: void add(int index)
+    void PhoneBook::add(int index)
     {
         std::cout << "Let's add a contact." << std::endl;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -72,7 +57,7 @@ class PhoneBook
             std::getline(std::cin, MyContacts[index].darkest_secret);
         }
     }
-    private: int pick_index()
+    int PhoneBook::pick_index()
     {
         int index;
         index = 42;
@@ -96,7 +81,7 @@ class PhoneBook
         }
         return index;
     }
-    public: void search()
+    void PhoneBook::search()
     {
         int index;
         std::string input;
@@ -130,47 +115,7 @@ class PhoneBook
         std::cout << "Nickname: " << MyContacts[index].nickname << std::endl;
         std::cout << "Phone Number: " << MyContacts[index].phone_number << std::endl;
         std::cout << "Darkest Secret: " << MyContacts[index].darkest_secret << std::endl;
-    }
-
-};
+    };
 
 
 
-int main(void)
-{
-    PhoneBook MyPhoneBook;
-    std::string input;
-    int index;
-
-    index = 0;
-
-    std::cout << "You have traveled back in time to 1995, and get to use a phone book." << std::endl;
-    std::cout << "Your phone book is currently empty." << std::endl;
-    std::cout << "You can ADD, SEARCH, or EXIT." <<std::endl;
-    std::cout << "MyPhoneBook: ";
-    std::cin >> input;
-    while (input != "EXIT")
-    {
-        if (input == "ADD")
-        {
-            MyPhoneBook.add(index);
-            if (index == 7)
-                index = 0;
-            else
-                index++;
-        }
-        else if (input == "SEARCH")
-            MyPhoneBook.search();
-        else
-        {   
-            std::cout << "Nope. You can only ADD, SEARCH, or EXIT." << std::endl;
-            
-        }
-        std::cout << "MyPhoneBook: ";
-        std::cin >> input;
-    }
-    {
-        std::cout << "Farewell, enjoy your trip back to the future." << std::endl;
-        exit(0);
-    }
-}
