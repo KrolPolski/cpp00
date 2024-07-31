@@ -15,7 +15,7 @@
 #include <limits>
 #include <iomanip>
 
-class Contacts
+class Contact
 {
     public:
         std::string first_name;
@@ -26,21 +26,21 @@ class Contacts
 };
 class PhoneBook 
 {
-    Contacts contact[8];
+    Contact MyContacts[8];
     public: void add(int index)
     {
         std::cout << "Let's add a contact." << std::endl;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "First Name: ";
-        std::getline(std::cin, contact[index].first_name);
+        std::getline(std::cin, MyContacts[index].first_name);
         std::cout << "Last Name: ";
-        std::getline(std::cin, contact[index].last_name);
+        std::getline(std::cin, MyContacts[index].last_name);
         std::cout << "Nickname: ";
-        std::getline(std::cin, contact[index].nickname);
+        std::getline(std::cin, MyContacts[index].nickname);
         std::cout << "Phone Number: ";
-        std::getline(std::cin, contact[index].phone_number);
+        std::getline(std::cin, MyContacts[index].phone_number);
         std::cout << "Darkest Secret: ";
-        std::getline(std::cin, contact[index].darkest_secret);
+        std::getline(std::cin, MyContacts[index].darkest_secret);
     }
     private: int pick_index()
     {
@@ -78,28 +78,28 @@ class PhoneBook
             
             std::cout << std::setw(10) << std::right << std::setfill(' ') << i
                 << " | ";
-            if (contact[i].first_name.length() > 10)
-              std::cout << std::setw(10) << contact[i].first_name.substr(0, 9) + ".";
+            if (MyContacts[i].first_name.length() > 10)
+              std::cout << std::setw(10) << MyContacts[i].first_name.substr(0, 9) + ".";
             else
-                std::cout << std::setw(10) << contact[i].first_name;
+                std::cout << std::setw(10) << MyContacts[i].first_name;
             std::cout << " | " ;
-            if (contact[i].last_name.length() > 10)
-              std::cout << std::setw(10) << contact[i].last_name.substr(0, 9) + ".";
+            if (MyContacts[i].last_name.length() > 10)
+              std::cout << std::setw(10) << MyContacts[i].last_name.substr(0, 9) + ".";
             else
-                std::cout << std::setw(10) << contact[i].last_name;
+                std::cout << std::setw(10) << MyContacts[i].last_name;
             std::cout << " | " ;
-            if (contact[i].nickname.length() > 10)
-              std::cout << std::setw(10) << contact[i].nickname.substr(0, 9) + ".";
+            if (MyContacts[i].nickname.length() > 10)
+              std::cout << std::setw(10) << MyContacts[i].nickname.substr(0, 9) + ".";
             else
-                std::cout << std::setw(10) << contact[i].nickname;
+                std::cout << std::setw(10) << MyContacts[i].nickname;
             std::cout << std::endl;
         }
         index = pick_index();
-        std::cout << "First Name: " << contact[index].first_name << std::endl;
-        std::cout << "Last Name: " << contact[index].last_name << std::endl;
-        std::cout << "Nickname: " << contact[index].nickname << std::endl;
-        std::cout << "Phone Number: " << contact[index].phone_number << std::endl;
-        std::cout << "Darkest Secret: " << contact[index].darkest_secret << std::endl;
+        std::cout << "First Name: " << MyContacts[index].first_name << std::endl;
+        std::cout << "Last Name: " << MyContacts[index].last_name << std::endl;
+        std::cout << "Nickname: " << MyContacts[index].nickname << std::endl;
+        std::cout << "Phone Number: " << MyContacts[index].phone_number << std::endl;
+        std::cout << "Darkest Secret: " << MyContacts[index].darkest_secret << std::endl;
     }
 
 };
