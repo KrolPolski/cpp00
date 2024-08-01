@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 12:54:09 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/07/31 14:40:05 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:37:49 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,55 @@
 
     void PhoneBook::add(int index)
     {
+        std::string input;
+        
         std::cout << "Let's add a contact." << std::endl;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "First Name: ";
-        std::getline(std::cin, MyContacts[index].first_name);
-        while (MyContacts[index].first_name.length() == 0)
+        std::getline(std::cin, input);
+        while (input.length() == 0)
         {
             std::cout << "Empty inputs are not allowed. Try again" << std::endl;
             std::cout << "First Name: ";
-            std::getline(std::cin, MyContacts[index].first_name);
-        }     
+            std::getline(std::cin, input);
+        }
+        MyContacts[index].set_first_name(input);
         std::cout << "Last Name: ";
-        std::getline(std::cin, MyContacts[index].last_name);
-        while (MyContacts[index].last_name.length() == 0)
+        std::getline(std::cin, input);
+        while (input.length() == 0)
         {
             std::cout << "Empty inputs are not allowed. Try again" << std::endl;
             std::cout << "Last Name: ";
-            std::getline(std::cin, MyContacts[index].last_name);
+            std::getline(std::cin, input);
         }
+        MyContacts[index].set_last_name(input);
         std::cout << "Nickname: ";
-        std::getline(std::cin, MyContacts[index].nickname);
-        while (MyContacts[index].nickname.length() == 0)
+        std::getline(std::cin, input);
+        while (input.length() == 0)
         {
              std::cout << "Empty inputs are not allowed. Try again" << std::endl;
              std::cout << "Nickname: ";
-             std::getline(std::cin, MyContacts[index].nickname);
+             std::getline(std::cin, input);
         }
+        MyContacts[index].set_nickname(input);
         std::cout << "Phone Number: ";
-        std::getline(std::cin, MyContacts[index].phone_number);
-        while (MyContacts[index].phone_number.length() == 0)
+        std::getline(std::cin, input);
+        while (input.length() == 0)
         {
             std::cout << "Empty inputs are not allowed. Try again" << std::endl;
             std::cout << "Phone Number: ";
-            std::getline(std::cin, MyContacts[index].phone_number);
+            std::getline(std::cin, input);
         }
+        MyContacts[index].set_phone_number(input);
         std::cout << "Darkest Secret: ";
-        std::getline(std::cin, MyContacts[index].darkest_secret);
-        while (MyContacts[index].darkest_secret.length() == 0)
+        std::getline(std::cin, input);
+        while (input.length() == 0)
         {
             std::cout << "Empty inputs are not allowed. Try again" << std::endl;
             std::cout << "Darkest Secret: ";
-            std::getline(std::cin, MyContacts[index].darkest_secret);
+            std::getline(std::cin, input);
         }
+        MyContacts[index].set_darkest_secret(input);
     }
     int PhoneBook::pick_index()
     {
@@ -93,28 +100,28 @@
             
             std::cout << std::setw(10) << std::right << std::setfill(' ') << i
                 << " | ";
-            if (MyContacts[i].first_name.length() > 10)
-              std::cout << std::setw(10) << MyContacts[i].first_name.substr(0, 9) + ".";
+            if (MyContacts[i].get_first_name().length() > 10)
+              std::cout << std::setw(10) << MyContacts[i].get_first_name().substr(0, 9) + ".";
             else
-                std::cout << std::setw(10) << MyContacts[i].first_name;
+                std::cout << std::setw(10) << MyContacts[i].get_first_name();
             std::cout << " | " ;
-            if (MyContacts[i].last_name.length() > 10)
-              std::cout << std::setw(10) << MyContacts[i].last_name.substr(0, 9) + ".";
+            if (MyContacts[i].get_last_name().length() > 10)
+              std::cout << std::setw(10) << MyContacts[i].get_last_name().substr(0, 9) + ".";
             else
-                std::cout << std::setw(10) << MyContacts[i].last_name;
+                std::cout << std::setw(10) << MyContacts[i].get_last_name();
             std::cout << " | " ;
-            if (MyContacts[i].nickname.length() > 10)
-              std::cout << std::setw(10) << MyContacts[i].nickname.substr(0, 9) + ".";
+            if (MyContacts[i].get_nickname().length() > 10)
+              std::cout << std::setw(10) << MyContacts[i].get_nickname().substr(0, 9) + ".";
             else
-                std::cout << std::setw(10) << MyContacts[i].nickname;
+                std::cout << std::setw(10) << MyContacts[i].get_nickname();
             std::cout << std::endl;
         }
         index = pick_index();
-        std::cout << "First Name: " << MyContacts[index].first_name << std::endl;
-        std::cout << "Last Name: " << MyContacts[index].last_name << std::endl;
-        std::cout << "Nickname: " << MyContacts[index].nickname << std::endl;
-        std::cout << "Phone Number: " << MyContacts[index].phone_number << std::endl;
-        std::cout << "Darkest Secret: " << MyContacts[index].darkest_secret << std::endl;
+        std::cout << "First Name: " << MyContacts[index].get_first_name() << std::endl;
+        std::cout << "Last Name: " << MyContacts[index].get_last_name() << std::endl;
+        std::cout << "Nickname: " << MyContacts[index].get_nickname() << std::endl;
+        std::cout << "Phone Number: " << MyContacts[index].get_phone_number() << std::endl;
+        std::cout << "Darkest Secret: " << MyContacts[index].get_darkest_secret() << std::endl;
     };
 
 

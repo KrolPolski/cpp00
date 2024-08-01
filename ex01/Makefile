@@ -6,13 +6,13 @@
 #    By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/18 15:26:38 by rboudwin          #+#    #+#              #
-#    Updated: 2024/07/31 14:15:52 by rboudwin         ###   ########.fr        #
+#    Updated: 2024/08/01 13:23:47 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= PhoneBook
 CFLAGS  := -Wextra -Wall -Werror
-SRCS	:= PhoneBook.cpp main.cpp
+SRCS	:= PhoneBook.cpp main.cpp Contact.cpp
 OBJS	:= ${SRCS:.cpp=.o}
 
 all: $(NAME)
