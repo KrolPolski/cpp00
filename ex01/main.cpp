@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 14:07:08 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/07/31 14:22:40 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:53:49 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,41 @@ int main(void)
     std::cout << "Your phone book is currently empty." << std::endl;
     std::cout << "You can ADD, SEARCH, or EXIT." <<std::endl;
     std::cout << "MyPhoneBook: ";
-    std::cin >> input;
-    while (input != "EXIT")
+    try
     {
-        if (input == "ADD")
-        {
-            MyPhoneBook.add(index);
-            if (index == 7)
-                index = 0;
-            else
-                index++;
-        }
-        else if (input == "SEARCH")
-            MyPhoneBook.search();
-        else
-        {   
-            std::cout << "Nope. You can only ADD, SEARCH, or EXIT." << std::endl;
-            
-        }
-        std::cout << "MyPhoneBook: ";
         std::cin >> input;
+        if (std::cin.eof())
+                throw std::runtime_error("The EOF character has come as was foretold!");
+        while (input != "EXIT")
+        {
+            if (input == "ADD")
+            {
+                MyPhoneBook.add(index);
+                if (index == 7)
+                    index = 0;
+                else
+                    index++;
+            }
+            else if (input == "SEARCH")
+                MyPhoneBook.search();
+            else
+            {   
+                std::cout << "Nope. You can only ADD, SEARCH, or EXIT." << std::endl;
+            }
+            std::cout << "MyPhoneBook: ";
+            std::cin >> input;
+            if (std::cin.eof())
+                throw std::runtime_error("The EOF character has come as was foretold!");
+        }
+        {
+            std::cout << "Farewell, enjoy your trip back to the future." << std::endl;
+            return (0);
+        }
+        
     }
+    catch (std::exception& e)
     {
-        std::cout << "Farewell, enjoy your trip back to the future." << std::endl;
-        exit(0);
+        std::cout << e.what() << std::endl;
+        return (1);
     }
 }

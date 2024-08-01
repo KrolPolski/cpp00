@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 12:54:09 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/08/01 13:37:49 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:52:20 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,47 +20,67 @@
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "First Name: ";
         std::getline(std::cin, input);
+        if (std::cin.eof())
+            throw std::runtime_error("The EOF character has come as was foretold!");
         while (input.length() == 0)
         {
             std::cout << "Empty inputs are not allowed. Try again" << std::endl;
             std::cout << "First Name: ";
             std::getline(std::cin, input);
+            if (std::cin.eof())
+                throw std::runtime_error("The EOF character has come as was foretold!");
         }
         MyContacts[index].set_first_name(input);
         std::cout << "Last Name: ";
         std::getline(std::cin, input);
+        if (std::cin.eof())
+                throw std::runtime_error("The EOF character has come as was foretold!");
         while (input.length() == 0)
         {
             std::cout << "Empty inputs are not allowed. Try again" << std::endl;
             std::cout << "Last Name: ";
             std::getline(std::cin, input);
+            if (std::cin.eof())
+                throw std::runtime_error("The EOF character has come as was foretold!");
         }
         MyContacts[index].set_last_name(input);
         std::cout << "Nickname: ";
         std::getline(std::cin, input);
+        if (std::cin.eof())
+                throw std::runtime_error("The EOF character has come as was foretold!");
         while (input.length() == 0)
         {
              std::cout << "Empty inputs are not allowed. Try again" << std::endl;
              std::cout << "Nickname: ";
              std::getline(std::cin, input);
+             if (std::cin.eof())
+                throw std::runtime_error("The EOF character has come as was foretold!");
         }
         MyContacts[index].set_nickname(input);
         std::cout << "Phone Number: ";
         std::getline(std::cin, input);
+        if (std::cin.eof())
+                throw std::runtime_error("The EOF character has come as was foretold!");
         while (input.length() == 0)
         {
             std::cout << "Empty inputs are not allowed. Try again" << std::endl;
             std::cout << "Phone Number: ";
             std::getline(std::cin, input);
+            if (std::cin.eof())
+                throw std::runtime_error("The EOF character has come as was foretold!");
         }
         MyContacts[index].set_phone_number(input);
         std::cout << "Darkest Secret: ";
         std::getline(std::cin, input);
+        if (std::cin.eof())
+                throw std::runtime_error("The EOF character has come as was foretold!");
         while (input.length() == 0)
         {
             std::cout << "Empty inputs are not allowed. Try again" << std::endl;
             std::cout << "Darkest Secret: ";
             std::getline(std::cin, input);
+            if (std::cin.eof())
+                throw std::runtime_error("The EOF character has come as was foretold!");
         }
         MyContacts[index].set_darkest_secret(input);
     }
@@ -74,6 +94,8 @@
         {
             std::cout << "Please select the contact you want by index: ";
             std::cin >> input;
+            if (std::cin.eof())
+                throw std::runtime_error("The EOF character has come as was foretold!");
             try
             {
                 index = std::stoi(input);
@@ -82,6 +104,10 @@
             {
                 std::cerr << "That wasn't a valid index. Try again" << std::endl;
                 continue;
+            }
+            catch(const std::out_of_range&)
+            {
+                std::cerr << "Nobody has that many friends. Get real." << std::endl;
             }
             if (index < 0 || index > 7)
                 std::cerr << "That index is out of range. Try again" << std::endl;
